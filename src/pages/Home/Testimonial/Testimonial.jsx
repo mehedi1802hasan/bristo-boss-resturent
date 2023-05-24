@@ -35,6 +35,8 @@ const Testimonial = () => {
                           value={review.rating}
                           readOnly
                          />
+                      
+                        <img className='my-4 w-14' src="https://cdn-icons-png.flaticon.com/128/56/56937.png" alt="" />
                             <p className='my-4'> {review.details}</p>
                             <p className='text-3xl font-bold text-orange-500'>{review.name}</p>
                         </div>

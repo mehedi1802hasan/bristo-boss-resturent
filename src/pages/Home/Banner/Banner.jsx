@@ -12,7 +12,7 @@ import img6 from '../../../../../bistro-boss-restaurant-resources/assets/home/06
 const Banner = () => {
     return (
         <div>
-       <Carousel>
+       <Carousel className='text-center'>
                 <div>
                     <img src={img1} />
                     <p className="legend">Legend 1</p>

@@ -67,7 +67,7 @@ title='our menu'
 
 <MenuCategory
  items={pizza}
- title='pizzzza'
+ title='pizza'
  img={pizzaImg}
 >
 </MenuCategory>

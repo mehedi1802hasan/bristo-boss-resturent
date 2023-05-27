@@ -3,9 +3,12 @@ import { useEffect } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate,validateCaptcha  } from 'react-simple-captcha';
 import { useState } from 'react';
 import { useRef } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../provider/AuthProvider';
 const Login = () => {
     const captchaRef=useRef(null);
     const [disabled,setDisabled]=useState(true)
+    const {googleLogin}=useContext(AuthContext)
     const handleCaptcha=e=>{
         const user_captcha_value=captchaRef.current.value;
         if (validateCaptcha(user_captcha_value)==true) {
@@ -24,6 +27,17 @@ const Login = () => {
         const email=form.email.value;
         const password=form.password.value;
         console.log(email,password)
+    }
+    const handleGoogle=()=>{
+      googleLogin()
+      .then(result=>{
+        const googlelogged=result.user;
+        console.log(googlelogged)
+        alert('google login successfully')
+      })
+       .catch(error=>{
+        console.log(error.message)
+       })
     }
     return (
         <div>
@@ -57,6 +71,9 @@ const Login = () => {
         </div>
         <div className="mt-6 form-control">
           <button disabled={disabled} className="btn btn-primary">Login</button>
+          
+          <button onClick={handleGoogle} disabled={disabled} className="btn btn-primary">Google</button>
+          
         </div>
       </form>
     </div>

@@ -8,7 +8,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 const Login = () => {
     const captchaRef=useRef(null);
     const [disabled,setDisabled]=useState(true)
-    const {googleLogin}=useContext(AuthContext)
+    const {googleLogin,user}=useContext(AuthContext)
     const handleCaptcha=e=>{
         const user_captcha_value=captchaRef.current.value;
         if (validateCaptcha(user_captcha_value)==true) {

@@ -5,10 +5,17 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 const Login = () => {
+  const navigate=useNavigate()
+  const location=useLocation();
+  const from = location.state?.from?.pathname || "/";
+
     const captchaRef=useRef(null);
     const [disabled,setDisabled]=useState(true)
-    const {googleLogin,user}=useContext(AuthContext)
+    const {googleLogin,login}=useContext(AuthContext)
     const handleCaptcha=e=>{
         const user_captcha_value=captchaRef.current.value;
         if (validateCaptcha(user_captcha_value)==true) {
@@ -27,13 +34,26 @@ const Login = () => {
         const email=form.email.value;
         const password=form.password.value;
         console.log(email,password)
+        //loginWIth email,passs firebase
+        login(email, password)
+        .then((result) => {
+          const logged = result.user;
+          console.log(logged);
+          alert('Login successful');
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          console.log(error.meessage);
+        });
+    
     }
     const handleGoogle=()=>{
       googleLogin()
       .then(result=>{
         const googlelogged=result.user;
         console.log(googlelogged)
-        alert('google login successfully')
+        alert('google login successfully');
+        navigate(from, { replace: true });
       })
        .catch(error=>{
         console.log(error.message)
@@ -71,10 +91,11 @@ const Login = () => {
         </div>
         <div className="mt-6 form-control">
           <button disabled={disabled} className="btn btn-primary">Login</button>
-          
+          <br />
           <button onClick={handleGoogle} disabled={disabled} className="btn btn-primary">Google</button>
           
         </div>
+        <h3 className='text-center'><Link to='/registration'>Are you new? <span className='font-bold text-green-500'>Registration</span> </Link></h3>
       </form>
     </div>
   </div>

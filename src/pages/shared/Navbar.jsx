@@ -1,13 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../provider/AuthProvider';
+import { FaShoppingCart } from 'react-icons/fa';
+
 const Navbar = () => {
+  const {logOut,user}=useContext(AuthContext)
+  const handleLogout=()=>{
+    logOut()
+    .then(()=>{})
+    .catch(error=>{
+      console.log(error.message)
+    })
+  }
     const navOptions=<>
  
             <li ><Link to='/'>Home</Link></li>
         <li><Link to='/menu'>Menu</Link></li>
        <li><Link to='/order/salad'>Order</Link></li>
-       <li ><Link to='/login'>Login</Link></li>
+      
+       <li>
+       <Link to='/'>
+       <button className="gap-2 btn">
+ <FaShoppingCart/>
+  <div className="badge badge-secondary">0</div>
+</button>
+       </Link>
+       </li>
+       
+      {
+        user ?
+        <button onClick={handleLogout}><Link to='/'>logOut</Link></button>
+        :
+        <>
+          <li ><Link to='/login'>Login</Link></li>
+          <li ><Link to='/registration'>Registration</Link></li>
+
+        </>
+      }
+      
     </>
+    
     return (
         <div>
             <div className="fixed z-10 max-w-screen-xl mx-auto text-white bg-black navbar bg-opacity-30">
@@ -28,7 +61,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Get started</a>
+ 
   </div>
 </div>
         </div>

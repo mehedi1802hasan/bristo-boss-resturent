@@ -16,7 +16,7 @@ const handleAddToCard=item=>{
       console.log(item)
      if(user && user.email){
       const orderItem={product_id :_id ,name,image,recipe,price, email:user.email}
-      fetch('http://localhost:3000/cards',{
+      fetch('http://localhost:5000/cards',{
         method:"POST",
         headers:{
           'content-type':'application/json'

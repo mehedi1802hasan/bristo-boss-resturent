@@ -2,13 +2,15 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { FaWallet,FaShoppingCart ,FaHome,FaCalendarAlt,FaFileContract} from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import useCard from '../hook/useCard';
 const DashBoard = () => {
+  const [card]=useCard()
     return (
         <div>
       <div className="drawer drawer-mobile ">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="flex flex-col items-center justify-center drawer-content">
-    <Outlet/>
+   <div className='h-full'><Outlet/></div>
     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
   
   </div> 
@@ -18,7 +20,7 @@ const DashBoard = () => {
     <li><NavLink to='/'><FaHome/>User Home</NavLink></li>   
      <li><NavLink to='/dashboard/reservation'><FaCalendarAlt/>Reservation</NavLink></li>
     <li><NavLink to='/dashboard/history'><FaWallet/>Payment History</NavLink></li>
-    <li><NavLink to='/dashboard/mycard'><FaShoppingCart/>My card</NavLink></li>
+    <li><NavLink to='/dashboard/mycard'><FaShoppingCart/>My card  <span className='text-green-800 '>+{card.length || 0 }</span></NavLink></li>
     <div className="divider"></div>
     
     <li><NavLink to='/'><FaHome/>Home</NavLink></li>  

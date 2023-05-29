@@ -1,22 +1,32 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { FaWallet,FaShoppingCart ,FaHome,FaCalendarAlt,FaFileContract} from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 const DashBoard = () => {
     return (
         <div>
-            <div className="drawer">
-  <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-  <div className="drawer-content">
-   <Outlet/>
-    <label htmlFor="my-drawer" className="btn btn-primary drawer-button">Open drawer</label>
+      <div className="drawer drawer-mobile ">
+  <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+  <div className="flex flex-col items-center justify-center drawer-content">
+    <Outlet/>
+    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+  
   </div> 
-  <div className="drawer-side">
-    <label htmlFor="my-drawer" className="drawer-overlay"></label>
-    <ul className="p-4 menu w-80 bg-base-100 text-base-content">
-
-      <li><a>Sidebar Item 1</a></li>
-      <li><a>Sidebar Item 2</a></li>
-      
+  <div className="drawer-side ">
+    <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
+    <ul className="p-4 menu w-80 bg-amber-600 text-base-content">
+    <li><NavLink to='/'><FaHome/>User Home</NavLink></li>   
+     <li><NavLink to='/dashboard/reservation'><FaCalendarAlt/>Reservation</NavLink></li>
+    <li><NavLink to='/dashboard/history'><FaWallet/>Payment History</NavLink></li>
+    <li><NavLink to='/dashboard/mycard'><FaShoppingCart/>My card</NavLink></li>
+    <div className="divider"></div>
+    
+    <li><NavLink to='/'><FaHome/>Home</NavLink></li>  
+    <li><NavLink to='/dashboard/menu'>Menu</NavLink></li>
+       <li><NavLink to='/order/salad'>Order</NavLink></li>
+    <li><NavLink to='/contact'><FaFileContract/>Contact</NavLink></li>
     </ul>
+  
   </div>
 </div>
         </div>

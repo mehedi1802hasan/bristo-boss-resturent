@@ -6,6 +6,8 @@ import Order from "../pages/Order/Order/Order";
 import Login from "../pages/LoginRegist/Login";
 import Registration from "../pages/LoginRegist/Registration";
 import PrivateRoute from "./PrivateRoute";
+import DashBoard from "../Layout/DashBoard";
+import MyCard from "../pages/Deshboard/MyCard/MyCard";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +31,15 @@ const router = createBrowserRouter([
     },{
       path:'registration',
       element:<Registration></Registration>
+    },{
+      path:"dashboard",
+      element:<DashBoard></DashBoard>,
+      children:[
+           {
+            path:'mycard',
+            element:<MyCard></MyCard>
+           }
+      ]
     }
   ]);
   export default router;

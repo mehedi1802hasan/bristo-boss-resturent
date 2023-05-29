@@ -3,16 +3,19 @@ import { useContext } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import useCard from '../../hook/useCard';
 const FoodCard = ({item}) => {
   const location=useLocation();
-  const navigate=useNavigate()
+  const navigate=useNavigate();
+  const [,refetch]=useCard()
     const {image,name,recipe,price,_id}=item;
-    const {user}=useContext(AuthContext)
+    const {user}=useContext(AuthContext);
+    
     
 const handleAddToCard=item=>{
       console.log(item)
      if(user && user.email){
-      const orderItem={_id,name,image,recipe,price, email:user.email}
+      const orderItem={product_id :_id ,name,image,recipe,price, email:user.email}
       fetch('http://localhost:3000/cards',{
         method:"POST",
         headers:{
@@ -25,7 +28,9 @@ const handleAddToCard=item=>{
       .then(data=>{
         console.log(data)
       if(data.insertedId){
+        refetch();
         alert('added done')
+        
       }
      
       })

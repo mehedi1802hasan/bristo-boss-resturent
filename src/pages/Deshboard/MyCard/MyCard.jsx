@@ -22,7 +22,7 @@ Swal.fire({
 }).then((result) => {
   if (result.isConfirmed) {
     
-    fetch(`http://localhost:5000/cards/${item._id}`,{
+    fetch(`http://localhost:3000/cards/${item._id}`,{
       method:"DELETE"
     })
     .then(res=>res.json()
@@ -52,21 +52,22 @@ Swal.fire({
         
             <h4> item: {card.length }</h4>
             <h3>Total Price:${total}</h3>
-            <button className='btn btn-outline btn-sm'>Pay</button>
+            <button className='bg-orange-400 btn btn-outline btn-sm'>Pay</button>
           </div>
           
           <div className="w-full overflow-x-auto">
   <table className="table w-full">
     {/* head */}
     <thead>
-      <tr>
-        <th> # </th>
-        <th>Food</th>
-        <th>Item Name</th>
-        <th>Price</th>
-        <th>Action</th>
-      </tr>
-    </thead>
+  <tr className="text-orange-500">
+    <th>#</th>
+    <th>Food</th>
+    <th>Item Name</th>
+    <th>Price</th>
+    <th>Action</th>
+  </tr>
+</thead>
+
     <tbody >
       {/* row 1 */}
      {

@@ -8,6 +8,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import SocialLogin from '../shared/SocialLogin';
 const Login = () => {
   const navigate=useNavigate()
   const location=useLocation();
@@ -15,7 +16,7 @@ const Login = () => {
 
     const captchaRef=useRef(null);
     const [disabled,setDisabled]=useState(true)
-    const {googleLogin,login}=useContext(AuthContext)
+    const {login}=useContext(AuthContext)
     const handleCaptcha=e=>{
         const user_captcha_value=captchaRef.current.value;
         if (validateCaptcha(user_captcha_value)==true) {
@@ -47,18 +48,7 @@ const Login = () => {
         });
     
     }
-    const handleGoogle=()=>{
-      googleLogin()
-      .then(result=>{
-        const googlelogged=result.user;
-        console.log(googlelogged)
-        alert('google login successfully');
-        navigate(from, { replace: true });
-      })
-       .catch(error=>{
-        console.log(error.message)
-       })
-    }
+   
     return (
         <div>
     <div className="min-h-screen hero bg-base-200">
@@ -92,8 +82,7 @@ const Login = () => {
         <div className="mt-6 form-control">
           <button disabled={disabled} className="btn btn-primary">Login</button>
           <br />
-          <button onClick={handleGoogle} disabled={disabled} className="btn btn-primary">Google</button>
-          
+          <SocialLogin/>
         </div>
         <h3 className='text-center'><Link to='/registration'>Are you new? <span className='font-bold text-green-500'>Registration</span> </Link></h3>
       </form>

@@ -2,20 +2,51 @@ import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import SocialLogin from '../shared/SocialLogin';
 const Registration = () => {
-    const {registration}=useContext(AuthContext)
+    const {registration,updateUserProfile}=useContext(AuthContext);
+   
     const handleRegistration=event=>{
         event.preventDefault()
         const form=event.target;
         const email=form.email.value;
         const password=form.password.value;
         const name=form.password.value;
-        console.log(name,email,password)
+        const photoUrl=form.photoUrl.value;
+        console.log(name,email,password,photoUrl)
         registration(email,password)
         .then(result=>{
             const signgedUp=result.user;
             console.log(signgedUp)
-            alert('registration successfully')
+            //alert('registration successfully');
+            
+            updateUserProfile( name ,photoUrl)
+            .then(()=>{
+              console.log('user profile info updated',);
+              const saveUser={name,email}
+              fetch('http://localhost:3000/users',{
+                method:"POST",
+                headers:{
+                  'content-type':'application/json'
+                },
+                body:JSON.stringify(saveUser)
+              })
+              .then(res=>res.json())
+              .then(data=>{
+                if(data.insertedId){
+                  Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'User created successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                }
+              })
+            
+            })
+            .catch(error => console.log(error))
         })
         .catch(error=>{
             console.log(error.message)
@@ -45,6 +76,13 @@ const Registration = () => {
         </div>
         <div className="form-control">
           <label className="label">
+            <span className="label-text">PhotoUrl</span>
+          </label>
+          <input type="text" name='photoUrl' placeholder="enter the photUrl" className="input input-bordered" />
+        </div>
+        
+        <div className="form-control">
+          <label className="label">
             <span className="label-text">Password</span>
           </label>
           <input type="text" name='password' placeholder="password" className="input input-bordered" />
@@ -57,6 +95,8 @@ const Registration = () => {
          
           
         </div>
+        <SocialLogin/>
+
         <h3 className='text-center'><Link to='/login'>Have you account? <span className='font-bold text-green-500'>Login</span> </Link></h3>
 
       </form>

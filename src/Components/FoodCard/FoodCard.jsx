@@ -4,6 +4,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import useCard from '../../hook/useCard';
+import Swal from 'sweetalert2';
 const FoodCard = ({item}) => {
   const location=useLocation();
   const navigate=useNavigate();
@@ -16,7 +17,7 @@ const handleAddToCard=item=>{
       console.log(item)
      if(user && user.email){
       const orderItem={product_id :_id ,name,image,recipe,price, email:user.email}
-      fetch('http://localhost:5000/cards',{
+      fetch('http://localhost:3000/cards',{
         method:"POST",
         headers:{
           'content-type':'application/json'
@@ -28,9 +29,15 @@ const handleAddToCard=item=>{
       .then(data=>{
         console.log(data)
       if(data.insertedId){
+      
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'added product successfully',
+          showConfirmButton: false,
+          timer: 1500
+        })
         refetch();
-        alert('added done')
-        
       }
      
       })

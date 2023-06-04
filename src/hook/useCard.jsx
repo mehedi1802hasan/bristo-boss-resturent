@@ -8,7 +8,7 @@ const [axiosSecure]=useAxiosSecure();
 const token= localStorage.getItem('access-token')
 const { refetch,  data:card=[] } = useQuery({
 queryKey: ['cards', user?.email],
-enabled: !loading && !!user?.email,
+enabled: !loading ,
 queryFn: async () => /**{
   const res = await fetch(`http://localhost:3000/cards?email=${user?.email}`,{
     headers:{

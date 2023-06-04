@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import DashBoard from "../Layout/DashBoard";
 import MyCard from "../pages/Deshboard/MyCard/MyCard";
 import AllUsers from "../pages/Deshboard/AllUsers/AllUsers";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
             element:<MyCard></MyCard>
            },{
             path:'allusers',
-            element:<AllUsers></AllUsers>
+            element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
            }
       ]
     }

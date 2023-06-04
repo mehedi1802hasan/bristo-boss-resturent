@@ -3,14 +3,19 @@ import { Outlet } from 'react-router-dom';
 import { FaWallet,FaShoppingCart ,FaHome,FaCalendarAlt,FaFileContract,FaUtensils,FaBook,FaUsers} from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import useCard from '../hook/useCard';
+import useAdmin from '../hook/useAdmin';
 const DashBoard = () => {
+  const [card] = useCard();
   // todo isAdmin
-  const isAdmin=true
-  const [card]=useCard()
+  //const isAdmin=true
+  const [isAdmin]=useAdmin()
+
+
+ 
     return (
         <div>
       <div className="drawer drawer-mobile ">
-  <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+  <input id="my-drawer-2 " type="checkbox" className="drawer-toggle" />
   <div className="flex flex-col items-center justify-center drawer-content">
    <div className='h-full'><Outlet/></div>
     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>

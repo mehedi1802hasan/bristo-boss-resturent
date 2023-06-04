@@ -44,7 +44,7 @@ Swal.fire({
      
     }
     return (
-        <div className='mt-14'>
+        <div className=' mt-14'>
             <Helmet>
             <title>Bistro | mycard</title>
           </Helmet> 
@@ -55,8 +55,8 @@ Swal.fire({
             <button className='bg-orange-400 btn btn-outline btn-sm'>Pay</button>
           </div>
           
-          <div className="w-full overflow-x-auto">
-  <table className="table w-full">
+          <div className="overflow-x-auto ">
+  <table className="table ">
     {/* head */}
     <thead>
   <tr className="text-orange-500">

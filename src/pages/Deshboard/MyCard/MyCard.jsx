@@ -43,8 +43,8 @@ Swal.fire({
       
      
     }
-    return (
-        <div className=' mt-14'>
+    return ( 
+        <div className='md:mx-52 lg:mx-52 mt-14'>
             <Helmet>
             <title>Bistro | mycard</title>
           </Helmet> 

@@ -11,6 +11,7 @@ import MyCard from "../pages/Deshboard/MyCard/MyCard";
 import AllUsers from "../pages/Deshboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
 import AddItem from "../pages/Deshboard/AddItem/AddItem";
+import MangeItem from "../pages/Deshboard/ManageItem/MangeItem";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +48,9 @@ const router = createBrowserRouter([
            },{
             path:'additem',
             element:<AdminRoute><AddItem></AddItem></AdminRoute>
+           },{
+            path:'manageitem',
+            element:<AdminRoute><MangeItem></MangeItem></AdminRoute>
            }
       ]
     }

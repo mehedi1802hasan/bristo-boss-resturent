@@ -1,11 +1,12 @@
 import React from 'react';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import { useForm } from "react-hook-form";
-
+import useAxiosSecure from '../../../hook/useAxiosSecure';
+import Swal from 'sweetalert2';
 const AddItem = () => {
     
-
-    const { register, handleSubmit,  formState: { errors }, } = useForm();
+ const [axiosSecure]=useAxiosSecure()
+    const { register, handleSubmit, reset } = useForm();
     const img_hosting_token=import.meta.env.VITE_Image_Upload_Token;
 
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
@@ -24,7 +25,20 @@ const AddItem = () => {
                 const  newItem={name, price: parseFloat(price) , recipe, category, img: imgUrl}
                 
                 console.log(newItem)
-
+                axiosSecure.post('/menu',newItem)
+                .then(data=>{
+                  console.log('after posting new menu item', data.data)
+                  if(data.data.insertedId){
+                    reset()
+                    Swal.fire({
+                      position: 'top-end',
+                      icon: 'success',
+                      title: 'Item added in the mongodb Database successfully',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+                  }
+              })
             }
         })
     }

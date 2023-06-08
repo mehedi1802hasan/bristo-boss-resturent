@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import useCard from '../../../hook/useCard';
 import { FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 const MyCard = () => {
     const [card,refetch]=useCard();
     
@@ -52,7 +53,8 @@ Swal.fire({
         
             <h4> item: {card.length }</h4>
             <h3>Total Price:${total}</h3>
-            <button className='bg-orange-400 btn btn-outline btn-sm'>Pay</button>
+           <Link to='/dashboard/payment'>
+           <button className='bg-orange-400 btn btn-outline btn-sm'>Pay</button></Link>
           </div>
           
           <div className="overflow-x-auto ">

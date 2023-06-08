@@ -12,6 +12,7 @@ import AllUsers from "../pages/Deshboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
 import AddItem from "../pages/Deshboard/AddItem/AddItem";
 import MangeItem from "../pages/Deshboard/ManageItem/MangeItem";
+import Payment from "../pages/Deshboard/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
             path:'mycard',
             element:<MyCard></MyCard>
            },{
+            path:'payment',
+            element:<Payment></Payment>
+           }
+           ,{
             path:'allusers',
             element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
            },{

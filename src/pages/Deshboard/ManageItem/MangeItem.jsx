@@ -24,7 +24,7 @@ const MangeItem = () => {
                 console.log('deleted  res', res.data);
           
                 if(res.data.deletedCount>0){
-                    refetch();
+                  refetch();
                     Swal.fire(
                         'Deleted!',
                         'Your file has been deleted.',
